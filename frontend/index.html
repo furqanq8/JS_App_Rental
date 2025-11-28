@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fleet Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Fleet Management</h1>
+      <nav>
+        <button class="tab-btn active" data-target="fleet">Fleet</button>
+        <button class="tab-btn" data-target="drivers">Drivers</button>
+        <button class="tab-btn" data-target="customers">Customers</button>
+        <button class="tab-btn" data-target="trips">Trips</button>
+        <button class="tab-btn" data-target="dashboard">Dashboard</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="fleet" class="tab-section active">
+        <h2>Fleet</h2>
+        <form id="fleet-form" class="entity-form">
+          <input type="hidden" id="fleet-id" />
+          <div class="form-row">
+            <label for="fleet-number">Fleet Number</label>
+            <input type="text" id="fleet-number" required />
+          </div>
+          <div class="form-row">
+            <label for="fleet-type">Type</label>
+            <input type="text" id="fleet-type" required />
+          </div>
+          <div class="form-row">
+            <label for="fleet-capacity">Capacity</label>
+            <input type="number" id="fleet-capacity" min="0" required />
+          </div>
+          <button type="submit">Save Fleet</button>
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th>Fleet Number</th>
+              <th>Type</th>
+              <th>Capacity</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="fleet-table-body"></tbody>
+        </table>
+      </section>
+
+      <section id="drivers" class="tab-section">
+        <h2>Drivers</h2>
+        <form id="driver-form" class="entity-form">
+          <input type="hidden" id="driver-id" />
+          <div class="form-row">
+            <label for="driver-name">Name</label>
+            <input type="text" id="driver-name" required />
+          </div>
+          <div class="form-row">
+            <label for="driver-phone">Phone</label>
+            <input type="tel" id="driver-phone" required />
+          </div>
+          <button type="submit">Save Driver</button>
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="driver-table-body"></tbody>
+        </table>
+      </section>
+
+      <section id="customers" class="tab-section">
+        <h2>Customers</h2>
+        <form id="customer-form" class="entity-form">
+          <input type="hidden" id="customer-id" />
+          <div class="form-row">
+            <label for="customer-name">Customer Name</label>
+            <input type="text" id="customer-name" required />
+          </div>
+          <div class="form-row">
+            <label for="company-name">Company Name</label>
+            <input type="text" id="company-name" required />
+          </div>
+          <div class="form-row">
+            <label for="customer-phone">Phone</label>
+            <input type="tel" id="customer-phone" required />
+          </div>
+          <button type="submit">Save Customer</button>
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Company</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="customer-table-body"></tbody>
+        </table>
+      </section>
+
+      <section id="trips" class="tab-section">
+        <h2>Trips</h2>
+        <form id="trip-form" class="entity-form">
+          <input type="hidden" id="trip-id" />
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="trip-date">Trip Date</label>
+              <input type="date" id="trip-date" required />
+            </div>
+            <div class="form-row">
+              <label for="location-from">From</label>
+              <input type="text" id="location-from" required />
+            </div>
+            <div class="form-row">
+              <label for="location-to">To</label>
+              <input type="text" id="location-to" required />
+            </div>
+            <div class="form-row">
+              <label for="fleet-select">Fleet</label>
+              <select id="fleet-select" required></select>
+            </div>
+            <div class="form-row">
+              <label for="driver-select">Driver</label>
+              <select id="driver-select" required></select>
+            </div>
+            <div class="form-row">
+              <label for="customer-select">Customer</label>
+              <select id="customer-select" required></select>
+            </div>
+            <div class="form-row">
+              <label for="work-type">Work Type</label>
+              <input type="text" id="work-type" required />
+            </div>
+            <div class="form-row">
+              <label for="amount">Amount</label>
+              <input type="number" id="amount" min="0" step="0.01" required />
+            </div>
+          </div>
+          <button type="submit">Save Trip</button>
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Fleet</th>
+              <th>Driver</th>
+              <th>Customer</th>
+              <th>Work Type</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="trip-table-body"></tbody>
+        </table>
+      </section>
+
+      <section id="dashboard" class="tab-section">
+        <h2>Dashboard</h2>
+        <div class="filters">
+          <div class="form-row">
+            <label for="filter-from">Date From</label>
+            <input type="date" id="filter-from" />
+          </div>
+          <div class="form-row">
+            <label for="filter-to">Date To</label>
+            <input type="date" id="filter-to" />
+          </div>
+          <div class="form-row">
+            <label for="filter-driver">Driver</label>
+            <select id="filter-driver">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="filter-customer">Customer</label>
+            <select id="filter-customer">
+              <option value="">All</option>
+            </select>
+          </div>
+          <button id="apply-filters">Apply Filters</button>
+        </div>
+
+        <div class="summary">
+          <div class="card">
+            <h3>Total Trips</h3>
+            <p id="total-trips">0</p>
+          </div>
+          <div class="card">
+            <h3>Total Amount</h3>
+            <p id="total-amount">0</p>
+          </div>
+        </div>
+
+        <div class="summary-tables">
+          <div>
+            <h3>Trips per Driver</h3>
+            <table>
+              <thead>
+                <tr><th>Driver</th><th>Trips</th></tr>
+              </thead>
+              <tbody id="trips-per-driver"></tbody>
+            </table>
+          </div>
+          <div>
+            <h3>Trips per Customer</h3>
+            <table>
+              <thead>
+                <tr><th>Customer</th><th>Company</th><th>Trips</th></tr>
+              </thead>
+              <tbody id="trips-per-customer"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Use the tabs above to manage your fleet, drivers, customers, and trips.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
